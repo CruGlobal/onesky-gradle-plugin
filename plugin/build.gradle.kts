@@ -71,3 +71,13 @@ dependencies {
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
+
+publishing {
+    repositories {
+        maven {
+            name = "cruGlobalMavenRepository"
+            setUrl("https://cruglobal.jfrog.io/artifactory/maven-cru-mobile-forks-local/")
+            credentials(PasswordCredentials::class)
+        }
+    }
+}
