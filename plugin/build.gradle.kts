@@ -9,13 +9,13 @@ plugins {
 
 apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
-group = "co.brainly"
+group = "org.cru.mobile.fork.co.brainly"
 version = "${version}_${grgit.log { includes = listOf("HEAD") }.size}"
 
 gradlePlugin {
     plugins {
         register("onesky-gradle") {
-            id = "co.brainly.onesky"
+            id = "org.cru.mobile.fork.co.brainly.onesky"
             displayName = "OneSky Gradle Plugin"
             implementationClass = "co.brainly.onesky.OneSkyPlugin"
         }

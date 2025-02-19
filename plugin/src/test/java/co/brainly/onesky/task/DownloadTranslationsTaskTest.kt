@@ -38,7 +38,7 @@ class DownloadTranslationsTaskTest {
                 }
                 
                 plugins {
-                    id("co.brainly.onesky")
+                    id("org.cru.mobile.fork.co.brainly.onesky")
                 }
                 
                 configure<OneSkyPluginExtension> {
