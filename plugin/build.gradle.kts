@@ -4,12 +4,13 @@ plugins {
     kotlin("jvm")
     `kotlin-dsl`
     `maven-publish`
+    alias(libs.plugins.grgit)
 }
 
 apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
 group = "co.brainly"
-version = "1.6.0"
+version = "${version}_${grgit.log { includes = listOf("HEAD") }.size}"
 
 gradlePlugin {
     plugins {
