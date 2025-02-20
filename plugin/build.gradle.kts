@@ -3,14 +3,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     `kotlin-dsl`
-    id("com.gradle.plugin-publish") version "1.2.1"
     `maven-publish`
+    alias(libs.plugins.grgit)
 }
 
 apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
-group = "co.brainly"
-version = "1.6.0"
+group = "org.cru.mobile.fork.co.brainly"
+version = "${version}_${grgit.log { includes = listOf("HEAD") }.size}"
 
 gradlePlugin {
     website.set("https://brainly.com")
@@ -18,7 +18,7 @@ gradlePlugin {
 
     plugins {
         register("onesky-gradle") {
-            id = "co.brainly.onesky"
+            id = "org.cru.mobile.fork.co.brainly.onesky"
             displayName = "OneSky Gradle Plugin"
             implementationClass = "co.brainly.onesky.OneSkyPlugin"
         }
@@ -72,4 +72,14 @@ dependencies {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "cruGlobalMavenRepository"
+            setUrl("https://cruglobal.jfrog.io/artifactory/maven-cru-mobile-forks-local/")
+            credentials(PasswordCredentials::class)
+        }
+    }
 }
